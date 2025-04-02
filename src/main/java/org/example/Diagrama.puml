@@ -1,0 +1,77 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Medio {
+  + precioFinal()
+}
+
+class Efectivo {
+  + precioFinal()
+}
+
+class Tarjeta {
+  - coeficienteFijo
+  + precioFinal()
+}
+
+interface Estado {
+  + precio()
+}
+
+class EstadoNuevo {
+  + precio()
+}
+
+class EstadoLiquidacion {
+  - porcentajeDescuento
+  + precio()
+}
+
+class EstadoPromocion {
+  - precioFijado
+  + precio()
+}
+
+enum TiposPrendas {
+  SACO
+  PANTALON
+  CAMISA
+}
+
+class Prenda {
+  - precioPropio
+  - estado
+  - tipo
+  + precio()
+}
+
+class Venta {
+  - prendasVendidas
+  - cantidad
+  - fechaVenta
+  - medioDePago
+  - cuotas
+  + valor()
+  - precioBase()
+}
+
+class GestionadorDeVentas {
+  - ventasTotales
+  + agregarVenta()
+  + ventasDelDia()
+}
+
+Medio <|.. Efectivo
+Medio <|.. Tarjeta
+
+Estado <|.. EstadoNuevo
+Estado <|.. EstadoLiquidacion
+Estado <|.. EstadoPromocion
+
+Prenda o-- Estado
+Prenda o-- TiposPrendas
+Venta o-- Prenda
+Venta o-- Medio
+GestionadorDeVentas o-- Venta
+
+@enduml

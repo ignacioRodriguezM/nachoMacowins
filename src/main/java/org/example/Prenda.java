@@ -2,9 +2,9 @@ package org.example;
 
 public class Prenda {
 
-    int precioPropio;
-    Estado estado;
-    TiposPrendas tipo;
+    private int precioPropio;
+    private Estado estado;
+    private TiposPrendas tipo;
 
     public Prenda(int precioPropio, Estado estado, TiposPrendas tipo){
         this.precioPropio = precioPropio;
